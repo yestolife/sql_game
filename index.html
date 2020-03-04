@@ -37,15 +37,16 @@
   <script>
     window.onload = () => loadData('sql-murder-mystery.db');
   </script>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <!-- <script async src="scripts/js"></script> -->
-<!--   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	var hm = document.createElement("script");
+	hm.src = "https://hm.baidu.com/hm.js?cf1572a0ca239e2264e0d68df6e0594f";
+	var s = document.getElementsByTagName("script")[0]; 
+	s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
 
-    gtag('config', 'UA-27829802-1');
-  </script> -->
   <title>SQL谋杀案</title>
 </head>
 
@@ -61,7 +62,7 @@
 
     <div id="intro" class="grid">
       <div class="grid-item">
-	    <p>
+	    <p style="text-align: center">
           SQL市发生一起谋杀事件！这是一个好玩的破案游戏，让你自我驱动地学习SQL概念和命令。
         </p>
         <img src="img/clue.png" class="img-rounded">
@@ -73,24 +74,14 @@
         <h2>一、SQL初学者漫游</h2>
         <p>
           我们将介绍有关SQL的基本概念，但足以让你追查凶手。如果你想学习完整的SQL，去<a href="https://selectstarsql.com/">Select
-            Star SQL</a>看看。
-        </p>
-      </div>
-    </div>
-
-    <div class="grid">
-      <div class="grid-item">
-        <p>
-          这起谋杀案已经发生，大侦探需要你的帮忙。大侦探给了你一份犯罪情况报告，但你不小心搞丢了。你模糊地记得这是一起<strong>谋杀案（murder）</strong>
+            Star SQL</a>看看。这起谋杀案已经发生，大侦探需要你的帮忙。大侦探给了你一份犯罪情况报告，但你不小心搞丢了。你模糊地记得这是一起<strong>谋杀案（murder）</strong>
 		  ，发生时间在​<strong>2018年1月15日​</strong>，地点在​<strong>SQL市​</strong>。从警察局数据库开始回忆那份你弄丢的犯罪情况报告吧。
         </p>
         <p>
-          所有案件的线索都在一个庞大的数据库里，你需要利用SQL工具在茫茫的信息海洋中打捞关键线索。第一步，从警局的数据库里检索一遍犯罪情况报告相
-		  关资料。后面我们会介绍你需要知道的高级命令，你可以在任何代码框中输入SQL语句以实现的你的检索查找。
+          所有案件的线索都在一个庞大的数据库里，你需要利用SQL工具在茫茫的信息海洋中打捞关键线索。第一步，从警局的数据库里检索一遍犯罪情况报告相关资料。后面我们会介绍你需要知道的高级命令，你可以在任何代码框中输入SQL语句以实现的你的检索查找。
         </p>
       </div>
     </div>
-
 
     <div class="grid">
       <div class="grid-item">
@@ -109,24 +100,8 @@
         <h3>3.什么是ERD</h3>
         <p>
           ERD是实体关系图（Entity Relationship Diagram）的简称，是数据库中各个表关联关系的可视化展现。下面有SQL谋杀案相关数据库的ERD。
-		  图中每个表包含名字（上方），列名称的清单（左侧），相关数据类型（右侧，大写）。途中还有一些金钥匙图标，蓝色箭头和灰色箭头。金钥匙
-		  表示该列是表的主键，蓝色箭头表示该列是表的外键。如果两张表有关联，由灰色箭头连接表之间匹配的列。
-          <dl>
-            <dt>
-              主键​:
-            </dt>
-            <dd>
-              表中每行唯一的标识。
-            </dd>
-            <dt>
-              外键​:
-            </dt>
-            <dd>
-              用于一张表与另一张表关联数据。
-            </dd>
-          </dl>
-        </p>
-        <p>这是我们数据库的ERD:
+		  图中每个表包含名字（上方），列名称的清单（左侧），相关数据类型（右侧，大写）。图中还有一些金钥匙图标，蓝色箭头和灰色箭头。金钥匙表示该列是表的主键，蓝色箭头表示该列是表的外键。如果两张表有关联，由灰色箭头连接表之间匹配的列。<strong>主键​</strong>:表中每行唯一的标识。
+		  <strong>外键</strong>​:用于一张表与另一张表关联数据。这是我们数据库的ERD(线索就在里面，仔细观察，熟悉这幅图）:
         </p>
         <img src="img/schema.png" width='1002' height='491'>
       </div>
@@ -137,11 +112,11 @@
         <h2>
           三、什么是查询呢
         </h2>
+		
+		<h3>1. 试试简单的查询</h3>
         <p>如果你看一看数据库中的数据，你会发现表格太大了！数据太多了，几乎不可能一行一行看过去查到想要的信息。那咋整呢？</p>
         <p>
-          查询就在这里派上用场了。查询是我们用于获取数据库中数据而构造的语句。查询语句读起来像英语。我们来试试一些数据库查询，在
-		  下面任何代码框中，点击run可以执行查询语句。（注意，SQL命令是大小写不敏感的，但为了便于阅读，一般大写。还可以使用换行或者空格调整
-		  命令格式，以便阅读。大多数数据库系统需要命令以';'结尾，但在这个web页面中不需要。）
+          查询就在这里派上用场了。查询是我们用于获取数据库中数据而构造的语句。查询语句读起来像英语。我们来试试一些数据库查询，在下面任何代码框中，点击run可以执行查询语句，第一次执行需要加载数据，耐心等待一会。（注意，SQL命令是大小写不敏感的，但为了便于阅读，一般大写。还可以使用换行或者空格调整命令格式，以便阅读。大多数数据库系统需要命令以';'结尾，但在这个web页面中不需要。）
         </p>
         <sql-exercise data-question="数据库中有多少人的信息呢?"
           data-comment="不必在意具体的含义, 但你要知道，可以改变'person'为其他ERD中的表名，以探索其他表格有多少行。试试吧。"
@@ -156,8 +131,7 @@ FROM person;"></sql-exercise>
 
         <sql-exercise data-question="一列中有哪些数据呢?"
           data-comment='处理数据时，总是想先找找数据库结构（如ERD图）和有效值，可是经常得不到。我们可以使用DISTINCT关键字快速查看数据库中有什么值。
-		  运行下面语句后，删除DISTINCT关键字跑一跑，看看有什么区别。（点击reset按钮可以清除结果）
- After you run it, delete the word DISTINCT and run it again. See the difference? (After you try that, you may want to click the "reset" button and run one more time before you continue.)'
+		  运行下面语句后，删除DISTINCT关键字跑一跑，看看有什么区别。（点击reset按钮可以清除结果）'
           data-default-text="SELECT DISTINCT type FROM crime_scene_report;"></sql-exercise>
 
       </div>
@@ -165,24 +139,14 @@ FROM person;"></sql-exercise>
 
     <div class="grid">
       <div class="grid-item">
-        <h3>1.SQL查询语句中有哪些元素呢?</h3>
-        <p>一条查询语句包含:
-          <ul>
-            <li>SQL关键字 (比如上面的 ​'SELECT'​ 和 ​'FROM​' )</li>
-            <li>列名 (比如上面的列名type)</li>
-            <li>表名 (比如上面的表名person)</li>
-            <li>通配符 (比如 ​<code>%</code>)</li>
-            <li>函数</li>
-            <li>筛选条件</li>
-            <li>其他</li>
-          </ul>
+        <h3>2.SQL查询语句中有哪些元素呢?</h3>
+        <p>一条查询语句包含:SQL关键字 (比如上面的 ​'SELECT'​ 和 ​'FROM​' )，列名 (比如上面的列名type)，表名 (比如上面的表名person)，通配符 (比如 ​<code>%</code>)，函数，筛选条件和其他。
         </p>
-
-        <h4 id="sql-keywords">SQL关键字</h4>
+        <h4>SQL关键字</h4>
         <p>
           SQL关键字是用于指定查询的操作。SQL关键字是大小写不敏感的，但建议使用大写，以便和其他部分区分开。一些常用的关键字有：
         </p>
-        <h5>SELECT</h5>
+		<h5>SELECT</h5>
         <p>SELECT​ 用于抓取数据库中指定列的数据:</p>
         <ul>
           <li>
@@ -192,6 +156,7 @@ FROM person;"></sql-exercise>
             列名: 选择指定列，将列名放在SELECT后，用逗号分隔各列名。
           </li>
         </ul>
+		
         <h5>FROM</h5>
         <p>FROM​ 指定表; 通过表名加逗号分隔，可以指定多个表。（后面还会学JOIN关键字，你就能找到感觉了）</p>
 
@@ -205,19 +170,18 @@ FROM person;"></sql-exercise>
 
         <p>AND关键字用于多重条件筛选，必须每个条件都满足才会被筛选出来。（OR关键字用于筛选满足任一条件的结果行）</p>
 
-        <sql-exercise data-question="这条查询需要得到指定犯罪类型和指定城市的数据。"
-          data-comment=" 注意，当指定的是文本值，需要在数据库中有匹配的值。可以试试将'Chicago' 改为 'chicago' 运行. 然后看看，你是不是能找到第一条线索。"
+        <sql-exercise id='clue1' data-question="这条查询需要得到指定犯罪类型和指定城市的数据。"
+          data-comment=" 注意，当指定的是文本值，需要在数据库中有匹配的值。可以试试将'Chicago' 改为 'chicago' 运行. 然后看看，你是不是能找到<strong>第一条线索</strong>。"
           data-default-text="SELECT * FROM crime_scene_report 
 WHERE type = 'theft' 
 AND city = 'Chicago';" data-solution="SELECT * FROM crime_scene_report 
 WHERE type = 'murder' 
 AND city = 'SQL City';"></sql-exercise>
 
-        <p>如果你没找到正确的犯罪情况报告，点击show solution按钮，替换为提示的代码。(忽略前面的 <code>/*</code>) 如果你找到了一条犯罪情况报告，而不是
-		多条相同城市相同犯罪类型的，那么恭喜你，找到了一条关键信息。
+        <p>如果你没找到正确的犯罪情况报告，点击show solution按钮，替换为提示的代码。(忽略前面的 <code>/*</code>) 如果你找到了一条犯罪情况报告，而不是多条相同城市相同犯罪类型的，那么恭喜你，找到了<strong>一条关键信息</strong>(你最好是把线索记下来，后面回用到的)。
         </p>
 
-        <h4 id='wildcards'>2. 通配符和匹配函数</h4>
+        <h3>3. 通配符和匹配函数</h3>
 
         <p>经常你只是知道关键信息的一部分，SQL也能利用好。用特定符号表示未知字符，就是通配符。SQL支持两种通配符。最常用的是<code>%</code>通配符。</p>
         <p>写一个 <code>%</code> 通配符在一条查询语句中，SQL系统会返回匹配其他字符的结果，在通配符的位置可以是任何字符串。例如，
@@ -241,8 +205,7 @@ WHERE city LIKE 'I%';"></sql-exercise>
 FROM crime_scene_report 
 WHERE city BETWEEN 'W%' AND 'Z%';"></sql-exercise>
 
-        <p>已经提到了SQL命令大小写不敏感，但是 <code>WHERE</code>查询使用<code>=</code> 和 <code>LIKE</code> 的条件对大小写敏感. 可是有时你不知道数据库中的文本是怎样的，
-		还好SQL提供了两个函数帮你。他们是 <code>UPPER()</code> 和<code>LOWER()</code>，你可以发现他们是干嘛的，在下面代码框里探索一番吧。</p>
+        <p>已经提到了SQL命令大小写不敏感，但是 <code>WHERE</code>查询使用<code>=</code> 和 <code>LIKE</code> 的条件对大小写敏感. 可是有时你不知道数据库中的文本是怎样的，还好SQL提供了两个函数帮你。他们是 <code>UPPER()</code> 和<code>LOWER()</code>，你可以发现他们是干嘛的，在下面代码框里探索一番吧。</p>
 
         <sql-exercise data-question="试试 UPPER() 和 LOWER()." data-comment="" data-default-text="SELECT DISTINCT city 
 FROM crime_scene_report 
@@ -258,60 +221,20 @@ WHERE LOWER(city) ='sql city';"></sql-exercise>
 
         <h3>SQL聚合函数</h3>
         <p>
-          有时候你的问题可能不是简单地查找某行符合条件的数据。你很可能想知道更复杂的问题，比如谁年龄最大，谁最矮之类的。
-		  <strong>聚合函数</strong>可以帮助解决这些问题。实际上你前面已经学了一个聚合函数<code>COUNT</code>。
+          有时候你的问题可能不是简单地查找某行符合条件的数据。你很可能想知道更复杂的问题，比如谁年龄最大，谁最矮之类的。<strong>聚合函数</strong>可以帮助解决这些问题。实际上你前面已经学了一个聚合函数<code>COUNT</code>。有驾照的人中年龄最大的有多大？在数据量不大的时候，你可以直接用肉眼去看，但<code>drivers_license</code>表中有成千上万条记录。（试试<code>COUNT</code>，你就知道有多少了！）你不可能靠看数据而找到答案。
         </p>
-        <p>
-          有驾照的人中年龄最大的有多大？在数据量不大的时候，你可以直接用肉眼去看，但<code>drivers_license</code>表中有成千上万条记录。
-		  （试试<code>COUNT</code>，你就知道有多少了！）你不可能靠看数据而找到答案。
-        </p>
-        <p>SQL提供了一些有用的聚合函数:
-
-          <dl>
-            <dt>
-              MAX
-            </dt>
-            <dd>
-              查找最大值
-            </dd>
-            <dt>
-              MIN
-            </dt>
-            <dd>
-              查找最小值
-            </dd>
-            <dt>
-              SUM
-            </dt>
-            <dd>
-              计算某列的和
-            </dd>
-            <dt>
-              AVG
-            </dt>
-            <dd>
-              计算某列的平均值
-            </dd>
-            <dt>
-              COUNT​
-            </dt>
-            <dd>
-              某列值的计数
-            </dd>
-          </dl>
+        <p>SQL提供了一些有用的聚合函数: MAX：查找最大值；MIN：查找最小值；SUM：计算某列的和；AVG：计算某列的平均值；COUNT​：某列值的计数。
         </p>
         <sql-exercise data-question="运行查询语句，试试其他聚合函数。" data-comment=""
           data-default-text="SELECT max(age) FROM drivers_license;"></sql-exercise>
 
-        <p>还有另外一种查找最大最小值的办法，同时可以看到更多的数据，就是通过排序。在列名后使用<code>ORDER BY</code>很简单地排序。
-		当数据量很大时，排序是个很大的挑战（当大家使用SQL工作时，请使用更好的数据库工具，别用像这个基于web版的）。默认条件下，ORDER BY 是升序的，
-		你也可以通过<code>ASC</code>指定升序，或者<code>DESC</code>指定降序。
+        <p>还有另外一种查找最大最小值的办法，同时可以看到更多的数据，就是通过排序。在列名后使用<code>ORDER BY</code>很简单地排序。当数据量很大时，排序是个很大的挑战（当大家使用SQL工作时，请使用更好的数据库工具，别用这种基于web版的）。默认条件下，ORDER BY 是升序的，你也可以通过<code>ASC</code>指定升序，或者<code>DESC</code>指定降序。
         </p>
         <sql-exercise data-question="执行查询语句，看看如何控制排序。"
           data-comment="执行后，改变ASC为DESC，看看结果有什么不同。也可以试试在其他列排序。"
           data-default-text="SELECT * FROM drivers_license ORDER BY age ASC LIMIT 10"></sql-exercise>
-
-        <p>目前你已经具备了足够的SQL知识来找到两个目击者，试试吧！</p>
+		
+        <p id='clue2'>目前你已经具备了足够的SQL知识来找到两个目击者，试试吧！还记得<a href="#clue1">第一条线索</a>吗？</p>
         <sql-exercise data-question="写一条查询语句找到第一个目击者"
           data-comment="有很多中方式去做，即使显示“Incorrect”，你也可能得到答案。"
           data-default-text="
@@ -338,12 +261,10 @@ AND address_street_name = 'Franklin Ave';"></sql-exercise>
         <h2>五、把表格连接起来</h2>
         <p>到目前，我们已经能够从单一表中查找数据。但如果我们需要遇到复杂问题怎么办，比如从两个不同的表取数。JOIN登场了。</p>
 
-        <p> SQL老手会使用好几种JOIN，你可能听说过内连接，外连接，左连接，右连接。这里我们只讨论最常见的内连接。由于内连接太常见了，
-		SQL中可以忽略INNER关键字。</p>
+        <p> SQL老手会使用好几种JOIN，你可能听说过内连接，外连接，左连接，右连接。这里我们只讨论最常见的内连接。由于内连接太常见了，SQL中可以忽略INNER关键字。</p>
 
         <p>
-          最常见的连接表的方式是使用主键和外键。参考前面的ERD图，看看键在表格之间的关系。可以连接任意列，但是作为键值的列可以提高效率。
-		  最简单展示连接操作是如何工作的就是写出来。
+          最常见的连接表的方式是使用主键和外键。参考前面的ERD图，看看键在表格之间的关系。可以连接任意列，但是作为键值的列可以提高效率。最简单展示连接操作是如何工作的就是写出来。
         </p>
 
         <sql-exercise
@@ -369,21 +290,18 @@ JOIN drivers_license dl
   ON p.license_id = dl.id
 WHERE annual_income > 450000"></sql-exercise>
 
-
-        <p>现在你已经知道如何连接表了，你可以找到之前查到的两个目击者的询问记录。试试吧！</p>
+		
+        <p>现在你已经知道如何连接表了，你可以找到之前查到的两个目击者的询问记录。试试吧！（还记得前面找到的<a href='#clue2'>线索</a>吗，另外多看看ERD图很有帮助）</p>
         <sql-exercise data-question="写一条查询展示两个目击者的询问记录"
           data-comment="有很多中方式去做，及时显示“Incorrect”，你也可能得到答案。官方答案是使用一条查询语句，但你不必一致。你甚至可以不使用JOIN关联表，试试吧。"
-          data-default-text="
-
-
-" data-solution="SELECT person.name, interview.transcript
+          data-default-text="" data-solution="SELECT person.name, interview.transcript
 FROM person JOIN interview
 ON person.id = interview.person_id
 WHERE person.id = 14887 OR person.id = 16371;"></sql-exercise>
       </div>
     </div>
 
-
+	<img src="img/schema.png" width='1002' height='491'>
 
     <div id="go-get-em" class="grid">
       <div class="grid-item">
@@ -411,7 +329,11 @@ SELECT value FROM solution;"></sql-exercise>
       </div>
     </div>
 
-
+	<footer>
+		<p>西北大学英文原版地址: <a href="https://mystery.knightlab.com/walkthrough.html">https://mystery.knightlab.com/walkthrough.html</a>.</p>
+		<p>本站源代码: <a href="https://github.com/yestolife/sql_game">https://github.com/yestolife/sql_game</a>.</p>
+		<p>作者CSDN博客: <a href="https://blog.csdn.net/Andytl">https://blog.csdn.net/Andytl</a>.</p>
+	</footer>
 
 
 </body>
