@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+  
+>>>>>>> gh_pages
 Web在线运行：
 直接访问：https://yestolife.github.io/sql_game/
 推建使用Chrome浏览器访问，第一次点RUN执行SQL时需要加载数据，可能较慢。
